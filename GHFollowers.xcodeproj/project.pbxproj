@@ -15,6 +15,7 @@
 		9D6A6342266D96F900E14C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6A6340266D96F900E14C9C /* LaunchScreen.storyboard */; };
 		9D6A634A266D9D0800E14C9C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A6349266D9D0800E14C9C /* SearchVC.swift */; };
 		9D6A634C266D9D3100E14C9C /* FavouritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A634B266D9D3100E14C9C /* FavouritesListVC.swift */; };
+		9D78C1672672CC2A00835142 /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78C1662672CC2A00835142 /* FollowerListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9D6A6343266D96F900E14C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D6A6349266D9D0800E14C9C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9D6A634B266D9D3100E14C9C /* FavouritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListVC.swift; sourceTree = "<group>"; };
+		9D78C1662672CC2A00835142 /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				9D6A6343266D96F900E14C9C /* Info.plist */,
 				9D6A6349266D9D0800E14C9C /* SearchVC.swift */,
 				9D6A634B266D9D3100E14C9C /* FavouritesListVC.swift */,
+				9D78C1662672CC2A00835142 /* FollowerListVC.swift */,
 			);
 			path = GHFollowers;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				9D6A634A266D9D0800E14C9C /* SearchVC.swift in Sources */,
 				9D4193D4266EFD7300475911 /* GFButton.swift in Sources */,
 				9D6A6336266D96F800E14C9C /* AppDelegate.swift in Sources */,
+				9D78C1672672CC2A00835142 /* FollowerListVC.swift in Sources */,
 				9D6A634C266D9D3100E14C9C /* FavouritesListVC.swift in Sources */,
 				9D6A6338266D96F800E14C9C /* SceneDelegate.swift in Sources */,
 			);

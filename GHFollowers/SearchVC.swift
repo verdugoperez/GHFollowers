@@ -8,10 +8,16 @@
 import UIKit
 
 class SearchVC: UIViewController {
+    
+    // MARK: - Properties
     let logoImageView = UIImageView()
     let userNameTextField = GFTextField()
     let actionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    var isUserNameEntered: Bool {
+        return !userNameTextField.text!.isEmpty
+    }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +26,7 @@ class SearchVC: UIViewController {
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
+        createDismissKeyboardTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +34,17 @@ class SearchVC: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    @objc func pushFollowerListVC(){
+        guard isUserNameEntered else { return }
+        let followerListVC = FollowerListVC()
+        
+        followerListVC.title = userNameTextField.text!
+        followerListVC.userName = userNameTextField.text!
+        
+        navigationController?.pushViewController(followerListVC, animated: true)
+    }
+    
+    // MARK: - UI
     func configureLogoImageView(){
         // addSubView es equivalente a drag y drop del storyboard
         view.addSubview(logoImageView)
@@ -44,6 +62,7 @@ class SearchVC: UIViewController {
     
     func configureTextField(){
         view.addSubview(userNameTextField)
+        userNameTextField.delegate = self
         
         NSLayoutConstraint.activate([
             userNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -55,7 +74,7 @@ class SearchVC: UIViewController {
     
     func configureCallToActionButton(){
         view.addSubview(actionButton)
-        
+        actionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         NSLayoutConstraint.activate([
             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
@@ -63,15 +82,17 @@ class SearchVC: UIViewController {
             actionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func createDismissKeyboardTapGesture(){
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        self.view.addGestureRecognizer(tap)
     }
-    */
+}
 
+// MARK: - UITextFieldDelegate
+extension SearchVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("jala prro")
+        return true
+    }
 }
