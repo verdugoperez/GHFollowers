@@ -15,20 +15,16 @@ class FollowerListVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        navigationController?.isNavigationBarHidden = false
+        // Corregir bug de animación de navigation bar cuando hay transición en VC que está oculta
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .magenta
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //navigationController?.isNavigationBarHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    */
 
 }

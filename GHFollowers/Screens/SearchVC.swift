@@ -31,7 +31,10 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+       // navigationController?.isNavigationBarHidden = true
+        
+        // Corregir bug de animación de navigation bar cuando hay transición en VC que está oculta
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @objc func pushFollowerListVC(){
