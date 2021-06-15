@@ -18,6 +18,16 @@ class FollowerListVC: UIViewController {
         // Corregir bug de animación de navigation bar cuando hay transición en VC que está oculta
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .magenta
+        
+        NetworkManager.shared.getFollowers(for: userName.lowercased(), page: 1) { followers, errorMessage in
+            guard let followers = followers else {
+                self.presentGFAlertOnMainThread(title: "Bad Stuff happend", message: errorMessage!, buttonTitle: "Ok")
+                return
+            }
+            
+            print("Followers.count = \(followers.count)")
+            print(followers)
+        }
     }
     
 
