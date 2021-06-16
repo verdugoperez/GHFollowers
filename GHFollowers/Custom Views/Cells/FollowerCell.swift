@@ -46,7 +46,8 @@ class FollowerCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             usernameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
-            usernameLabel.widthAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             usernameLabel.heightAnchor.constraint(equalToConstant: 20) // dejar 4px más que el fontsize para que no se corten algunas letras
         ])
     }

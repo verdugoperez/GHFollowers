@@ -9,8 +9,15 @@ import UIKit
 
 class FollowerListVC: UIViewController {
     
+    enum Section {
+        case main
+    }
+    
     var userName: String!
+    var followers = [Follower]()
+    
     private var collectionView: UICollectionView!
+    var dataSourc: UICollectionViewDiffableDataSource<Section, Follower>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +26,7 @@ class FollowerListVC: UIViewController {
         configureViewController()
         configureCollectionView()
         getFollowers()
+        configureDataSource()
     }
     
 
@@ -34,7 +42,7 @@ class FollowerListVC: UIViewController {
         
         // inicializar primero el collection view antes de agregarlo a la subview
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
     }
     
@@ -66,10 +74,30 @@ class FollowerListVC: UIViewController {
         NetworkManager.shared.getFollowers(for: userName.lowercased(), page: 1) { result in
             switch result {
                 case .success(let followers):
-                    print(followers)
+                    self.followers = followers
+                    self.updateData()
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Bad Stuff happend", message: error.rawValue, buttonTitle: "Ok")
             }
+        }
+    }
+    
+    func configureDataSource(){
+        dataSourc = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
+            cell.set(follower: follower)
+            
+            return cell
+        })
+    }
+    
+    func updateData(){
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        
+        DispatchQueue.main.async {
+            self.dataSourc.apply(snapshot, animatingDifferences: true, completion: nil)
         }
     }
 }
