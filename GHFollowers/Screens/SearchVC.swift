@@ -35,6 +35,7 @@ class SearchVC: UIViewController {
         
         // Corregir bug de animación de navigation bar cuando hay transición en VC que está oculta
         navigationController?.setNavigationBarHidden(true, animated: true)
+        userNameTextField.becomeFirstResponder()
     }
     
     @objc func pushFollowerListVC(){
@@ -99,7 +100,6 @@ class SearchVC: UIViewController {
 // MARK: - UITextFieldDelegate
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("jala prro")
         return true
     }
 }
