@@ -27,7 +27,7 @@ class FollowerListVC: UIViewController {
         // Do any additional setup after loading the view.
         configureViewController()
         configureCollectionView()
-        getFollowers(page: page)
+        getFollowers()
         configureDataSource()
     }
     
@@ -57,12 +57,14 @@ class FollowerListVC: UIViewController {
     
 
     
-    func getFollowers(page: Int){
+    func getFollowers(){
+        showLoadingView()
         NetworkManager.shared.getFollowers(for: userName, page: page) { [weak self] result in
+            self!.dismissLoadingView()
             switch result {
                 case .success(let followers):
                     // check para ver si el usuario tiene más seguidores
-                    if followers.count < 100 {
+                    if followers.count < NetworkManager.shared.perPage {
                         self?.hasMoreFollowers = false
                     }
                     
@@ -105,9 +107,7 @@ extension FollowerListVC: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             guard hasMoreFollowers else { return }
             page += 1
-            getFollowers(page: page)
+            getFollowers()
         }
-        
-        
     }
 }

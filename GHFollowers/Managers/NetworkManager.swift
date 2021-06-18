@@ -10,7 +10,7 @@ import UIKit
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://api.github.com"
-    private var perPage = 100
+    let perPage = 100
     let cache = NSCache<NSString, UIImage>()
     private init(){}
     
@@ -54,4 +54,5 @@ class NetworkManager {
         // resume hace la petición
         task.resume()
     }
+    
 }
