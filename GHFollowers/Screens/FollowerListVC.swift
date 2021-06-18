@@ -60,18 +60,29 @@ class FollowerListVC: UIViewController {
     func getFollowers(){
         showLoadingView()
         NetworkManager.shared.getFollowers(for: userName, page: page) { [weak self] result in
-            self!.dismissLoadingView()
+            guard let self = self else { return }
+            self.dismissLoadingView()
             switch result {
                 case .success(let followers):
                     // check para ver si el usuario tiene más seguidores
                     if followers.count < NetworkManager.shared.perPage {
-                        self?.hasMoreFollowers = false
+                        self.hasMoreFollowers = false
                     }
                     
-                    self?.followers.append(contentsOf: followers)
-                    self?.updateData()
+                    self.followers.append(contentsOf: followers)
+                    
+                    if followers.isEmpty {
+                        let message = "This user doesen't have any followers, go follow them 🌝"
+                        DispatchQueue.main.async {
+                            self.showEmptyStateView(with: message, view: self.view)
+                        }
+                        
+                        return
+                    }
+                    
+                    self.updateData()
                 case .failure(let error):
-                    self?.presentGFAlertOnMainThread(title: "Bad Stuff happend", message: error.rawValue, buttonTitle: "Ok")
+                    self.presentGFAlertOnMainThread(title: "Bad Stuff happend", message: error.rawValue, buttonTitle: "Ok")
             }
         }
     }
