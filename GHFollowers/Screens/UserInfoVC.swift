@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol UserInfoVCDelegate {
-    func didTapGitHubProfile()
-    func didTapGetFollowers()
+protocol UserInfoVCDelegate: AnyObject {
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
 }
 
 class UserInfoVC: UIViewController {
@@ -20,6 +20,7 @@ class UserInfoVC: UIViewController {
     var itemViewTwo = UIView()
     let dateLabel = GFBodyLabel(textAlignment: .center)
     var itemViews = [UIView]()
+    weak var delegate: FollowerListVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,13 +109,22 @@ class UserInfoVC: UIViewController {
 
 
 extension UserInfoVC: UserInfoVCDelegate {
-    func didTapGitHubProfile() {
+    func didTapGitHubProfile(for user: User) {
+        guard let url = URL(string: user.htmlUrl) else {
+            presentGFAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "Ok")
+            return
+        }
         
+        presentSafariVC(with: url)
     }
     
-    func didTapGetFollowers() {
+    func didTapGetFollowers(for user: User) {
+        guard user.followers != 0 else {
+                presentGFAlertOnMainThread(title: "No followers", message: "This user has no followers 😪", buttonTitle: "So sad")
+            return
+        }
         
+        delegate.didRequestFollowers(for: user.login)
+        dismissVC()
     }
-    
-    
 }
