@@ -58,7 +58,10 @@ class FollowerListVC: UIViewController {
     func configureViewController(){
         // Corregir bug de animación de navigation bar cuando hay transición en VC que está oculta
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .magenta
+        view.backgroundColor = .systemBackground
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func configureSearchController(){
@@ -119,6 +122,10 @@ class FollowerListVC: UIViewController {
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
         }
+    }
+    
+    @objc func addButtonTapped(){
+        
     }
 }
 

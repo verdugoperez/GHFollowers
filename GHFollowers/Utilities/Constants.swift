@@ -14,3 +14,7 @@ enum SFSymbols {
     static let followers = "heart"
     static let following = "person.2"
 }
+
+enum UserDefaultsKeys {
+    static let favourites = "favourites"
+}
