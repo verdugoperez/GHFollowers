@@ -26,6 +26,16 @@ class FollowerListVC: UIViewController {
     private var hasMoreFollowers = true
     private var isSearching = false
     
+    init(userName: String){
+        super.init(nibName: nil, bundle: nil)
+        self.userName = userName
+        title = userName
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
