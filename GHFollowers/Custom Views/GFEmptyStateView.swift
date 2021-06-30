@@ -27,13 +27,13 @@ class GFEmptyStateView: UIView {
     }
     
     private func configure(){
+        addSubViews(messageLabel, logoImageView)
         configureMessageLabel()
         configureLogoImageView()
         backgroundColor = .systemBackground
     }
     
     private func configureMessageLabel(){
-        addSubview(messageLabel)
         messageLabel.numberOfLines = 3
         messageLabel.textColor = .secondaryLabel
         let labelCenterYConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -80 : -150
@@ -49,7 +49,6 @@ class GFEmptyStateView: UIView {
     }
     
     private func configureLogoImageView(){
-        addSubview(logoImageView)
         logoImageView.image = Images.emptyState
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         

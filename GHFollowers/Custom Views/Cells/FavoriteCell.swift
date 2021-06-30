@@ -16,6 +16,7 @@ class FavoriteCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubViews(avatarImageView, usernameLabel)
         configure()
     }
     
@@ -36,9 +37,6 @@ class FavoriteCell: UITableViewCell {
     
     private func configure(){
         let padding: CGFloat = 12
-        
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
         
         accessoryType = .disclosureIndicator
         
