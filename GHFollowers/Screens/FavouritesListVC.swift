@@ -7,8 +7,7 @@
 
 import UIKit
 
-class FavouritesListVC: UIViewController {
-
+class FavouritesListVC: UIViewController  {
     let tableView = UITableView()
     var favorites = [Follower]()
     
@@ -81,9 +80,13 @@ extension FavouritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]
-        let followerListVC = FollowerListVC(userName: favorite.login)
+        let userInfoVC = UserInfoVC()
+        userInfoVC.username = favorite.login
+        userInfoVC.delegate = self
         
-        navigationController?.pushViewController(followerListVC, animated: true)
+        let navController = UINavigationController(rootViewController: userInfoVC)
+        
+        present(navController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -102,5 +105,14 @@ extension FavouritesListVC: UITableViewDataSource, UITableViewDelegate {
             
             self.presentGFAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
         }
+    }
+}
+
+
+extension FavouritesListVC: UserInfoVCDelegate {
+    func didRequestFollowers(for username: String) {
+        let followerListVC = FollowerListVC(userName: username)
+        
+        navigationController?.pushViewController(followerListVC, animated: true)
     }
 }
