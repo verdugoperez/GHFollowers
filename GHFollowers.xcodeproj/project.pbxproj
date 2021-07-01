@@ -41,6 +41,7 @@
 		9D8D1C60268C033A00018B3E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8D1C5F268C033A00018B3E /* UIView+Ext.swift */; };
 		9D937473268A896900EBC5C6 /* GFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D937472268A896900EBC5C6 /* GFTabBarController.swift */; };
 		9D937475268A935800EBC5C6 /* GFAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D937474268A935800EBC5C6 /* GFAlertContainerView.swift */; };
+		9D980244268D4EBE0030513F /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D980243268D4EBE0030513F /* UITableView+Ext.swift */; };
 		9D9C02E82687F90B002172AC /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9C02E72687F90B002172AC /* FavoriteCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		9D8D1C5F268C033A00018B3E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		9D937472268A896900EBC5C6 /* GFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTabBarController.swift; sourceTree = "<group>"; };
 		9D937474268A935800EBC5C6 /* GFAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertContainerView.swift; sourceTree = "<group>"; };
+		9D980243268D4EBE0030513F /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		9D9C02E72687F90B002172AC /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 				9D0272FB2672F1A1004777D7 /* UIViewController+Ext.swift */,
 				9D2A21E32682A08300AEBC80 /* Date+Ext.swift */,
 				9D8D1C5F268C033A00018B3E /* UIView+Ext.swift */,
+				9D980243268D4EBE0030513F /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D1FE90A2677AB180085B26B /* User.swift in Sources */,
+				9D980244268D4EBE0030513F /* UITableView+Ext.swift in Sources */,
 				9D4193D6266F00BD00475911 /* GFTextField.swift in Sources */,
 				9D6A634A266D9D0800E14C9C /* SearchVC.swift in Sources */,
 				9D4193D4266EFD7300475911 /* GFButton.swift in Sources */,
